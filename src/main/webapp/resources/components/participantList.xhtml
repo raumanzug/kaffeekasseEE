@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:jsf="http://xmlns.jcp.org/jsf"
+    xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    >
+
+    <cc:interface>
+    </cc:interface>
+
+    <cc:implementation>
+
+        <h:form>
+            <h:panelGrid columns="8">
+                <h:outputLabel value="-"/>
+                <h:inputText
+                    size="17"
+                    title="#{l10n.nextParticipantsName}"
+                    value="#{mBean.nextParticipantsName}" />
+                <h:outputLabel value="-"/>
+                <h:outputLabel value="-"/>
+                <h:commandButton action="#{mBean.setNextParticipant}" value="+"/>
+                <h:outputLabel value="-"/>
+                <h:outputLabel value="-"/>
+                <h:outputLabel value="-"/>
+
+                <c:forEach items="#{mBean.activeParticipants}" var="participantFO" >
+                    <h:outputLabel value="#{participantFO.participant.id}"/>
+                    <h:outputLabel value="#{participantFO.participant.name}"/>
+                    <h:outputLabel value="#{participantFO.depositEUR}">
+                        <f:convertNumber currencyCode="EUR" type="currency"/>
+                    </h:outputLabel>
+                    <h:outputLabel value="#{participantFO.participant.nrCups} #{l10n.cups}"/>
+                    <h:commandButton action="#{mBean.inactivateParticipant(participantFO)}" value="-"/>
+                    <h:panelGroup>
+                        <h:inputText
+                            size="5"
+                            value="#{participantFO.coffeeInAmount}"
+                            >
+                            <f:convertNumber currencyCode="EUR" type="currency"/>
+                        </h:inputText>
+                        <h:commandButton action="#{mBean.coffeeIn(participantFO)}" value="#{l10n.coffeeIn}"/>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <h:inputText
+                            size="7"
+                            value="#{participantFO.coffeeOutAmount}"
+                            >
+                            <f:convertNumber type="number"/>
+                        </h:inputText>
+                        <h:commandButton action="#{mBean.coffeeOut(participantFO)}" value="#{l10n.coffeeTaken}"/>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <h:inputText
+                            size="7"
+                            value="#{participantFO.payInAmount}"
+                            >
+                            <f:convertNumber currencyCode="EUR" type="currency"/>
+                        </h:inputText>
+                        <h:commandButton action="#{mBean.pay(participantFO)}" value="#{l10n.payIn}"/>
+                    </h:panelGroup>
+                </c:forEach>
+
+            </h:panelGrid>
+        </h:form>
+    </cc:implementation>
+
+</html>

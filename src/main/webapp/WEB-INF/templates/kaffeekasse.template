@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:jsf="http://xmlns.jcp.org/jsf"
+    xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:kaffeekasse="http://xmlns.jcp.org/jsf/composite/components"
+>
+    <ui:insert name="metadata"/>
+
+    <h:head>
+        <h:outputStylesheet name="css/kaffeekasse.css"/>
+        <title>Kaffeekasse</title>
+    </h:head>
+
+    <h:body>
+        <header>
+            <h:outputLabel value="kaffeekasse v0.1"/>
+        </header>
+        <nav>
+            <ui:insert name="nav"/>
+        </nav>
+        <aside>
+            <kaffeekasse:sideControl/>
+        </aside>
+        <main>
+            <h:messages
+                errorClass="msgError"
+                fatalClass="msgFatal"
+                infoClass="msgInfo"
+                warnClass="msgWarning"
+                styleClass="msgStyle"
+                layout="table"
+                tooltip="true"
+            />
+            <ui:insert name="content"/>
+        </main>
+        <footer>
+            <h:outputLink value="https://github.com/raumanzug">
+                <h:outputLabel value="© 2022; Jörg Fischer"/>
+            </h:outputLink>
+        </footer>
+    </h:body>
+</html>
+

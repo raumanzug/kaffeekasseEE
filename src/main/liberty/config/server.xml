@@ -1,0 +1,27 @@
+<server description="Intro REST Guide Liberty server">
+    <featureManager>
+        <feature>cdi-3.0</feature>
+        <feature>faces-3.0</feature>
+        <feature>persistence-3.0</feature>
+    </featureManager>
+
+    <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
+                  id="defaultHttpEndpoint" host="*" />
+
+    <webApplication location="kaffeekasse.war" contextRoot="${app.context.root}"/>
+
+    <logging traceSpecification="JPA=all"/>
+
+    <library id="jdbcLib">
+        <fileset dir="jdbc" includes="*.jar"/>
+    </library>
+    <dataSource id="DefaultDataSource" jndiName="jdbc/standard_data_source">
+        <jdbcDriver libraryRef="jdbcLib"/>
+        <properties
+            password=""
+            URL="jdbc:mysql://localhost:3306/kaffeekasse"
+            user="kaffeekasse"
+        />
+    </dataSource>
+
+</server>

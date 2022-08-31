@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config>
+    <application>
+        <resource-bundle>
+            <base-name>l10n</base-name>
+            <var>l10n</var>
+        </resource-bundle>
+    </application>
+</faces-config>
